@@ -1,0 +1,83 @@
+/* Custom Button */
+.whitebutton {
+    margin: 0 auto;
+    width: 200px;
+}
+
+.whitebutton a {
+    background: #dddddd;
+    color: #666;
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Droid Arabic Kufi',Verdana,sans-serif;
+    height: 50px;
+    line-height: 50px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 200px;
+    position: relative;
+    z-index: 2;
+}
+
+.whitebutton a:before {
+    content: '\f019';
+    font-family: FontAwesome;
+    font-weight: normal;
+    padding: 8px;
+    margin-left: 0px;
+    margin-right: 30px;
+}
+
+.whitebutton span {
+    background: #444;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    font-family: 'Droid Arabic Kufi', Verdana,sans-serif;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 200px;
+    z-index: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.whitebutton .up {
+    height: 40px;
+    background: #e25734;
+    margin: 0px auto;
+    opacity: 0;
+    border-radius: 0 0 5px 5px;
+    transform: translate(0,-50px);
+    transition: 350ms;
+}
+
+.whitebutton .down {
+    height: 40px;
+    margin: -40px auto;
+    opacity: 0;
+    border-radius: 5px 5px 0 0;
+    transform: translate(0,-50px);
+    transition: 350ms;
+}
+
+.whitebutton .down:before {
+    content:'\f14a';
+    font-family: FontAwesome;
+    font-weight: normal;
+    margin-left: -6px;
+    color: #aaa;
+}
+
+.whitebutton:hover .up {
+    opacity: 1;
+    transform: translate(0,0);
+}
+
+.whitebutton:hover .down {
+    opacity: 1;
+    transform: translate(0,-90px);
+}

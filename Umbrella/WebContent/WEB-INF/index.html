@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>保护伞云医疗</title>
+
+<!-- Google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,800' rel='stylesheet' type='text/css'>
+
+<!-- font awesome -->
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+
+<!-- animate.css -->
+<link rel="stylesheet" href="assets/animate/animate.css" />
+
+
+<!-- favicon -->
+<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+<link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+
+<link rel="stylesheet" href="assets/style.css">
+
+</head>
+
+<body id="home">
+<!-- header -->
+
+
+      <!-- intro -->
+      <div class="intro">
+      <div class="fullpage">
+        <div class="ab-wrap">
+        <div class="ab-center">
+          <div class="wowload fadeInDown">
+          <img src="images/logo.png" class="wowload rotateIn">
+          <h1 class="title">保护伞云医疗系统</h1>
+          <p>Umbrella Cloud Medical System </p>
+            <form class="form-inline"  id= "uploadForm">
+              <div class="form-group">
+              <input type="password" class="form-control" placeholder="输入口令" id="pwd">
+                  <input type='button' class='btn btn-success' onclick="F_Open_dialog()" id = "file_chooser"value='选择密钥'/>
+                 <input type="file" name="fileField" class="file" id="fileField" size="28" onchange="change(this)"/>
+               </div>
+            </form>
+            <div class="progress-button elastic">
+              <link rel="stylesheet" type="text/css" href="assets/css/component.css" />
+              <button type="button" style="display:none;" id = "login";><span>登 陆</span></button>
+              <svg class="progress-circle" width="70" height="70"><path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/></svg>
+              <svg class="checkmark" width="70" height="70"><path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/></svg>
+              <svg class="cross" width="70" height="70"><path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/></svg>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <a href="#about" class="anchor scroll wowload fadeInDownBig"><i class="fa fa-angle-down  fa-4x"></i></a>
+
+      </div>
+      <!-- intro -->
+
+
+      <!-- about -->
+      <div class="about spacer" id="about">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 wowload fadeInLeftBig">
+              <h3>关于我们</h3>
+              <p>集存储、管理、计算为一体的云医疗服务平台，您可以在任何时间和地点轻松并快速地享受保护伞云医疗系统的优质服务，平台不会泄漏您的任何隐私数据，为您提供快捷高效的检索与计算服务的同时也承担了自动备份与身份鉴别等多重数据安全保护任务。</p>
+            </div>
+            <div class="col-md-6 text-center"><a target="_blank" title="credit www.socialsteak.com"><img src="images/iphone.png" class="img-responsive wowload fadeInUp" alt="http://socialsteak.com/"></a></div>
+          </div>
+        </div>
+      </div>
+      <!-- about -->
+
+       <!-- contact -->
+       <div class="contact wowload fadeIn">
+
+       <div class="container">
+       <h2 class="text-center">联系我们</h2>
+       <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <form>
+                <div class="form-group">
+                    <input id="name" name="name" type="text" class="form-control" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                    <input id="email" name="email" type="email" class="form-control" placeholder="邮箱">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" class="form-control" placeholder="留言" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning" id="submitButton"><i class="fa fa-send-o"></i> 提交</button>
+            </form>
+
+          </div>
+        </div>
+       </div>
+       </div>
+       <!-- contact -->
+
+
+        <!-- footer -->
+        <div class="footer text-center wowload fadeIn">
+          <div class="social">
+          <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+          <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+          <a href="#"><i class="fa fa-pinterest fa-2x"></i></a>
+          </div>
+        </div>
+        <!-- footer -->
+
+
+<a href="#home" class="gototop scroll"><i class="fa fa-angle-up  fa-3x"></i></a>
+
+<script type="text/javascript">
+function F_Open_dialog()
+{
+document.getElementById("fileField").click();
+}
+</script>
+ <script src="assets/js/modernizr.custom.js"></script>
+<!-- jquery -->
+<script src="assets/jquery.js"></script>
+
+<!-- wow script -->
+<script src="assets/wow/wow.min.js"></script>
+
+<!-- boostrap -->
+<script src="assets/bootstrap/js/bootstrap.js" type="text/javascript" ></script>
+
+<!-- jquery mobile -->
+<script src="assets/mobile/touchSwipe.min.js"></script>
+<script src="assets/respond/respond.js"></script>
+
+
+<!-- custom script -->
+<script src="assets/script.js"></script>
+<script type="text/javascript" src="assets/js/classie.js"></script>
+<script type="text/javascript" src="assets/js/uiProgressButton.js"></script>
+<script type="text/javascript">
+[].slice.call( document.querySelectorAll( '.progress-button' ) ).forEach( function( bttn, pos ) {
+	new UIProgressButton( bttn, {
+		callback : function( instance ) {
+			var progress = 0;
+				interval = setInterval( function() {
+					progress = Math.min( progress + Math.random() * 0.1, 1 );
+					instance.setProgress( progress );
+					if( progress === 1 ) {
+						instance.stop( pos === 1 || pos === 3 ? -1 : 1 );
+						clearInterval( interval );
+            setTimeout("window.location.href = '/Cloud/index.html'",1500);
+            }
+				} , 150 );
+		}
+	} );
+}   );
+function getFileName(o) {
+    var pos=o.lastIndexOf("\\");
+    return o.substring(pos+1);
+}
+
+var currentBtn1 = document.getElementById("file_chooser");
+var currentBtn2 = document.getElementById("login");
+var currentTex = document.getElementById("pwd");
+
+function change(source) {
+    var str = document.getElementById("pwd").value;
+    if(str ==''){
+        alert("口令不能为空！");
+        return;
+    }
+    var fileObj = document.getElementById("fileField").files[0]; // 获取文件对象
+    var form = new FormData();
+    form.append("file", fileObj);// 文件对象
+    form.append("id", str);// 文件对象
+    var file0 = $("#fileField").val();
+    var fileName = getFileName(file0);
+    if(fileName!="Keys") {
+        alert("请选择正确密钥");
+        return;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: "../keydiscern",
+        data: form,
+        async: true,
+        contentType: false,
+        processData: false,
+        success: function (returndata) {
+            if(returndata==0) {
+                alert("口令错误！");
+                location.reload();
+                return;
+            }
+            else{
+                alert(returndata);
+                currentBtn2.style.display = "block";
+                currentBtn1.style.display = "none";
+                currentTex.style.display = "none";
+                }
+            },
+        error: function (returndata) {
+            alert("发生错误"+returndata);
+            location.reload();
+        },
+       });
+}
+</script>
+
+
+
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+@import "compass/css3";
+
+// Colors
+$barColor: #fffde8;
+$overlayColor: #fffde8;
+$dbg: #2f3439;
+$bg: lighten($dbg,20%);
+$size: 180px;
+$bdiam: ($size/4)-10;
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:700,900,400);
+
+body {
+  background-color: $dbg;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+/* -------------------------------------
+ * Bar container
+ * ------------------------------------- */
+.progress-radial {
+  display: inline-block;
+  margin: 15px;
+  position: relative;
+  width: $size;
+  height: $size;
+  border-radius: 50%;  
+  border: 10px solid $bg; // remove gradient color
+  background-color: $barColor; // default 100%
+  box-shadow: 0 2px 15px rgba(0,0,0,.3);
+  &:after,
+  &:before {
+    content: '';
+    width: $bdiam;
+    height: $bdiam;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    margin-left: -($bdiam/2);
+    margin-top: -($bdiam/2);
+    background: $barColor;
+    position: absolute;
+    z-index: 999;
+    box-shadow: 10px 0 10px rgba(0,0,0,.2);
+  }
+  &:after {
+    z-index: 998;
+    box-shadow: none;
+    transform: translate(0,-($size/2)+($bdiam/2));
+    
+  }
+  b:after {
+    color: $overlayColor;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+    position: absolute;
+    font-weight: 900;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    height: 50%;
+    background-color: $dbg;
+    border-radius: 50%;
+    margin-left: -25%;
+    margin-top: -25%;
+    text-align: center;
+    line-height: $size / 2;
+    font-size: $size / 6;
+    box-shadow: 0 2px 3px rgba(0,0,0,.3) inset, 0 0 0 10px $bg;
+  }
+}
+  
+/* -------------------------------------
+ * Mixin for progress-% class
+ * ------------------------------------- */
+
+$step: 1; // step of % for created classes
+
+$loops: round(100 / $step);
+$increment: 360 / $loops;
+$half: round($loops / 2);
+@for $i from 0 through $loops {
+  .progress-#{$i*$step} {
+    &:before {
+      transform: rotate(#{$i*3.6}deg) translate(0,-($size/2)+($bdiam/2));
+    }
+    b:after {
+      content: '#{$i}%';
+    }
+    @if $i < $half {
+      $nextdeg: 90deg + ( $increment * $i );
+      background-image: linear-gradient(90deg, $bg 50%, transparent 50%, transparent), linear-gradient($nextdeg, $barColor 50%, $bg 50%, $bg);
+    } @else {
+      $nextdeg: -90deg + ( $increment * ( $i - $half ) );
+      background-image: linear-gradient($nextdeg, $barColor 50%, transparent 50%, transparent), linear-gradient(270deg, $barColor 50%, $bg 50%, $bg);
+    }
+  }
+}

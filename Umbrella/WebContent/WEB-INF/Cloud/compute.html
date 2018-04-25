@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!-- Website template form http://www.cssmoban.com/ -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>云端计算－保护伞云医疗平台</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<script src="js/modernizr.custom.js"></script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
+		<ul>
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="upload.html">上传</a>
+			</li>
+			<li>
+				<a href="search.html">检索</a>
+			</li>
+			<li>
+				<a href="download.html">下载</a>
+			</li>
+			<li class="selected">
+				<a href="compute.html">计算</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body" >
+		<div class="content" id="spp">
+			<h2>云端计算</h2>
+			<form>
+				<label for="sele1">
+					<span>筛选条件</span>
+					<select id="selectOption" name="selectOption">
+      				<option value="id"  selected="selected">身份证号</option>
+			      	<option value="status">病种</option>
+			      	<option value="main_doctor">主治医师</option>
+							<option value="keshi">科室</option>
+			    	</select>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="text" name="condition" id="condition" placeholder="请输入具体筛选内容">
+				</label>
+				<br>
+				<label for="sele2">
+					<span>计算内容</span>
+					<select id="computeResult" name="computeResult">
+      				<option value="age" selected="selected">年龄</option>
+			      	<option value="ill_last">病情持续时间</option>
+			      	<option value="total_cost">入院总花费</option>
+			    	</select>
+				</label>
+				<br>
+				<div class="whitebutton" id="search">
+					<link rel="stylesheet" type="text/css" href="css/btn5.css">
+					<a href="#" onclick="fun()">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;确定</a>
+					<span class="up">数据解密后可获取计算结果</span>
+					<span class="down">可将结果保存至本地</span>
+				</div>
+				<hr>
+				<div class="input" align="center">
+				<label for="show1" align='center'>
+					<span>该组数据之和</span>
+					<input type="text" name="sum" id="sum" disabled="true" style="color:black">
+				</label>
+				<br>
+				<label for="show2">
+					<span>该组数据之积</span>
+					<input type="text" name="multi" id="multi" disabled="true" style="color:black">
+				</label>
+				<br>
+				<label for="show3">
+					<span>该组数据平均值</span>
+					<input type="text" name="aver" id="aver" disabled="true" style="color:black">
+				</label>
+			</div>
+				<br>
+			</form>
+			<div class="progress-button elastic" align="center" onclick="open_file()">
+				<center><button type="button" style="display:none" id="download"><span>保存结果至本地</span></button></center>
+				<svg class="progress-circle" width="70" height="70"><path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/></svg>
+				<svg class="checkmark" width="70" height="70"><path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/></svg>
+				<svg class="cross" width="70" height="70"><path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/></svg>
+			</div><!-- /progress-button -->
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	function fun()
+	{
+		var condition = document.getElementById('condition').value;
+
+		if(condition==null||condition=="")alert("条件为空无法计算");
+
+		else {
+			var myselect1 = document.getElementById("selectOption");
+			var index1 = myselect1.selectedIndex ;
+			var option = myselect1.options[index1].value;
+
+			var myselect2 = document.getElementById("computeResult");
+			var index2 = myselect2.selectedIndex ;
+			var result = myselect2.options[index2].value;
+
+
+			$.ajax({
+				type: "post",
+				url: "../handlecompute",
+				data:{
+					"option":option,
+					"condition":condition,
+					"result":result
+				},
+				success: function(data) {//从服务器返回的结果
+					if(data==0) {
+						alert("未查询到相关信息！!");
+						fun3();
+						return;
+					}
+					resultMessage = data;
+					fun2(resultMessage);
+				},
+				error: function() {
+					alert("服务器未响应");
+					fun3();
+				},
+			});
+		}
+	}
+	function fun2(resultMessage)
+	{
+	    var resultset = resultMessage.split("#@");
+		alert("计算结果显示如下，可保存至本地");
+		var sum = document.getElementById('sum');
+		sum.value=resultset[0];
+		var multi = document.getElementById('multi');
+		multi.value = resultset[1];
+		var aver = document.getElementById('aver');
+		aver.value = resultset[2];
+
+		var currentBtn = document.getElementById("download");
+				currentBtn.style.display = "block";
+
+	}
+	</script>
+	<script type="text/javascript">
+	function fun3()
+	{
+
+		var sum = document.getElementById('sum');
+		sum.value='0';
+		var multi = document.getElementById('multi');
+		multi.value = '0';
+		var aver = document.getElementById('aver');
+		aver.value = '0';
+
+	}
+	</script>
+	<script type="text/javascript">
+		function open_file(){
+            var url='http://118.89.108.95:8080/temp_file/result.txt';
+			window.open(url);
+		}
+	</script>
+
+</body>
+</html>

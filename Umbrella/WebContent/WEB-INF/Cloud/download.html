@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!-- Website template form http://www.cssmoban.com/ -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>病历下载－保护伞云医疗平台</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+	<div id="header">
+		<a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
+		<ul>
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li>
+				<a href="upload.html">上传</a>
+			</li>
+			<li>
+				<a href="search.html">检索</a>
+			</li>
+			<li class="selected">
+				<a href="download.html">下载</a>
+			</li>
+			<li>
+				<a href="compute.html">计算</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body">
+		<div class="content" id="sp">
+					<h2>下载病历</h2>
+			<form action="index.html" id="sp1">
+				<link rel="stylesheet" type="text/css" href="css/btn5.css">
+
+			<p>
+			<div class="buttons">
+				<div class="whitebutton"><input type="text" class="form-control" placeholder="输入病人身份证号" id="id"></div>
+			<div class="whitebutton" id="search">
+				<a href="#" onclick="fun()">查找病历并解密</a>
+				<span class="up">可将病历保存到本地</span>
+				<span class="down">解密并显示到在网页</span>
+			</div>
+		</div>
+	</p>
+
+	<p></p>
+		<p>
+		<hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+	</p>
+				<label for="name">
+					<span>姓名</span>
+					<input style="color:black" type="text" name="name" id="name" disabled="true">
+					<span>性别</span>
+					 <input style="color:black"  name="sex" type="radio" id="sexa" disabled="true"><pre>男</pre>
+					 <input style="color:black" name="sex" type="radio" id="sexb" disabled="true"><pre>女</pre>
+				</label>
+				<label for="lastName">
+					<span>年龄</span>
+					<input style="color:black" type="text" name="age" id="age" disabled="true">
+					<span>身份证号</span>
+					<input style="color:black" type="text" name="id" id="id0" disabled="true">
+				</label>
+				<label for="email">
+					<span>病种</span>
+					<input style="color:black" type="text" name="email" id="situation" disabled="true">
+					<span>科室</span>
+					<input style="color:black" type="text" name="last" id="keshi" disabled="true">
+				</label>
+				<label for="phoneNumber">
+					<span>入院时间</span>
+					<input style="color:black" type="text" name="phone" id="intime" disabled="true">
+					<span>主治医师</span>
+					<input style="color:black" type="text" name="last" id="doctor" disabled="true">
+				</label>
+				<label for="subject">
+					<span>复诊次数</span>
+					<input style="color:black" type="text" name="subject" id="times" disabled="true">
+					<span>最后复诊时间</span>
+					<input style="color:black" type="text" name="last" id="lasttime" disabled="true">
+				</label>
+				<label for="phoneNumber">
+					<span>入院总花费</span>
+					<input style="color:black" type="text" name="phone" disabled="true" id='cost'>
+
+					<span>病情持续时间</span>
+					<input style="color:black" type="text" name="last" disabled="true" id='last'>
+
+				</label>
+				<label for="address">
+					<span>家庭住址</span>
+					<input style="color:black" type="text" name="phone" id="addr" disabled="true">
+				</label>
+				<label for="history">
+					<span>现病史</span>
+					<input style="color:black" type="text" name="phone" id="nowill" disabled="true">
+				</label>
+				<label for="message"> <span>治疗情况</span>
+					<textarea style="color:black" name="" id="treatment" cols="30" rows="10" disabled="true"></textarea>
+				</label>
+
+			</form>
+
+			<div class="progress-button elastic" align="center" onclick="open_file()">
+				<center><button type="button" style="display:none" id="download"><span>保 存</span></button></center>
+				<svg class="progress-circle" width="70" height="70"><path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/></svg>
+				<svg class="checkmark" width="70" height="70"><path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/></svg>
+				<svg class="cross" width="70" height="70"><path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/></svg>
+			</div><!-- /progress-button -->
+			<script type="text/javascript" src="js/classie.js"></script>
+			<script type="text/javascript" src="js/uiProgressButton.js"></script>
+			<script type="text/javascript">
+			[].slice.call( document.querySelectorAll( '.progress-button' ) ).forEach( function( bttn, pos ) {
+				new UIProgressButton( bttn, {
+					callback : function( instance ) {
+					}
+				} );
+			} );
+			</script>
+			<script type="text/javascript">
+
+			var result;
+
+			function fun()
+			{
+				var id = document.getElementById('id').value;
+
+				if(id=='')
+				alert('身份证号不能为空！');
+				else if(id.length!=18)
+				alert('身份证号格式不正确！');
+				else {
+					$.ajax({
+						type: "post",
+						url: "../handledownload",
+						data:{"id":id},
+						success: function(data) {//从服务器返回的结果
+							result = data;
+							fun2();
+						},
+						error: function() {
+						    alert('查找失败，请再次确认身份证号是否正确');
+						},
+					});
+				}
+			}
+
+			function fun2()
+			{
+				var resultset = result.split("@");
+				var i=0;
+				alert("病历已成功解密，可保存至本地");
+				var name = document.getElementById('name');
+				name.value = resultset[i].split("#")[1];
+				i = i+1;
+				var id = document.getElementById('id0');
+				id.value = resultset[i].split("#")[1];
+				i = i+1;
+				var sex = resultset[i].split("#")[1];
+				if(sex == "M") {
+					document.getElementById("sexa").checked="checked";
+				}
+				else {
+                    document.getElementById("sexb").checked="checked";
+				}
+				i = i+1;
+				var age = document.getElementById('age');
+                age.value = resultset[i].split("#")[1];
+                i = i+1;
+				var situa = document.getElementById('situation');
+                situa.value = resultset[i].split("#")[1];
+                i = i+1;
+				var keshi = document.getElementById('keshi');
+                keshi.value = resultset[i].split("#")[1];
+                i = i+1;
+				var intime = document.getElementById('intime');
+                intime.value = resultset[i].split("#")[1];
+                i = i+1;
+				var doc = document.getElementById('doctor');
+                doc.value = resultset[i].split("#")[1];
+                i = i+1;
+				var times = document.getElementById('times');
+                times.value = resultset[i].split("#")[1];
+                i = i+1;
+				var lasttime = document.getElementById('lasttime');
+                lasttime.value = resultset[i].split("#")[1];
+                i = i+1;
+				var cost = document.getElementById('cost');
+                cost.value = resultset[i].split("#")[1];
+                i = i+1;
+				var last = document.getElementById('last');
+                last.value = resultset[i].split("#")[1];
+                i = i+1;
+				var live =document.getElementById('addr');
+                live.value = resultset[i].split("#")[1];
+                i = i+1;
+				var history = document.getElementById('nowill');
+                history.value = resultset[i].split("#")[1];
+                i = i+1;
+				var treat = document.getElementById('treatment');
+                treat.value = resultset[i].split("#")[1];
+								var currentBtn = document.getElementById("download");
+								currentBtn.style.display = "block";
+			}
+
+			</script>
+			<script src="css/js/modernizr.custom.js"></script>
+			<script type="text/javascript" src="css/js/classie.js"></script>
+			<script type="text/javascript" src="css/js/uiProgressButton.js"></script>
+			<script type="text/javascript">
+			var flag = true;
+			var progress = 0;
+			function f() {
+				flag = false;
+			}
+			[].slice.call( document.querySelectorAll( '.progress-button' ) ).forEach( function( bttn, pos ) {
+				new UIProgressButton( bttn, {
+					callback : function( instance ) {
+							interval = setInterval( function() {
+									clearInterval( interval );
+									setTimeout("fun1()",1000)
+
+
+								}
+							}, 150);
+				}
+				} );
+			});
+			</script>
+
+			<script type="text/javascript">
+				function open_file(){
+                    var url='http://118.89.108.95:8080/temp_file/result.txt';
+					window.open(url);
+				}
+			</script>
+
+
+
+		</div>
+	</div>
+</body>
+</html>

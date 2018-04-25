@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>HandleUpload</servlet-name>
+        <servlet-class>handle.HandleUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandleUpload</servlet-name>
+        <url-pattern>/handleupload</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HandleDownload</servlet-name>
+        <servlet-class>handle.HandleDownload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandleDownload</servlet-name>
+        <url-pattern>/handledownload</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HandleDelete</servlet-name>
+        <servlet-class>handle.HandleDelete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandleDelete</servlet-name>
+        <url-pattern>/handledelete</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Discern</servlet-name>
+        <servlet-class>Keys.Discern</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Discern</servlet-name>
+        <url-pattern>/keydiscern</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HandleCompute</servlet-name>
+        <servlet-class>handle.HandleCompute</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HandleCompute</servlet-name>
+        <url-pattern>/handlecompute</url-pattern>
+    </servlet-mapping>
+</web-app>

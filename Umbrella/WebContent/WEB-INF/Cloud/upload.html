@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>病历上传－保护伞云医疗平台</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<script src="js/modernizr.custom.js"></script>
+</head>
+<body>
+	<div id="header">
+		<a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
+		<ul>
+			<li>
+				<a href="index.html">首页</a>
+			</li>
+			<li class="selected">
+				<a href="upload.html">上传</a>
+			</li>
+			<li>
+				<a href="search.html">检索</a>
+			</li>
+			<li>
+				<a href="download.html">下载</a>
+			</li>
+			<li>
+				<a href="compute.html">计算</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body">
+		<div class="content">
+			<h2>上传病历</h2>
+			<form>
+				<label for="name">
+					<span>姓名</span>
+					<input type="text" name="name" id="name">
+					<span>性别</span>
+					 <input name="sex" checked="checked" type="radio" id="sexa" value="M"><pre>男</pre>
+					 <input name="sex" type="radio" id="sexb" value="F"><pre>女</pre>
+				</label>
+				<label for="lastName">
+					<span>年龄</span>
+					<input type="text" name="age" id="age">
+					<span>身份证号</span>
+					<input type="text" name="id" id="id">
+				</label>
+				<label for="email">
+					<span>病种</span>
+					<input type="text" name="email" id="email">
+					<span>科室</span>
+					<input type="text" name="last" id="lastName0">
+				</label>
+				<label for="phoneNumber">
+					<span>入院时间</span>
+					<input type="text" name="phone" id="phoneNumber">
+					<span>主治医师</span>
+					<input type="text" name="last" id="lastName">
+				</label>
+				<label for="subject">
+					<span>复诊次数</span>
+					<input type="text" name="subject" id="subject">
+					<span>最后复诊时间</span>
+					<input type="text" name="last" id="lastName4">
+				</label>
+				<label for="phoneNumber">
+					<span>入院总花费</span>
+					<input type="text" name="phone" id="phone">
+
+					<span>病情持续时间</span>
+					<input type="text" name="last" id="last">
+
+				</label>
+				<label for="address">
+					<span>家庭住址</span>
+					<input type="text" name="phone" id="addr">
+				</label>
+				<label for="history">
+					<span>现病史</span>
+					<input type="text" name="phone" id="nowill">
+				</label>
+				<label for="message"> <span>治疗情况</span>
+					<textarea name="" id="message" cols="30" rows="10"></textarea>
+				</label>
+
+			</form>
+			<div class="progress-button elastic" align="center">
+				<center><button><span>上传病历</span></button></center>
+				<svg class="progress-circle" width="70" height="70"><path d="m35,2.5c17.955803,0 32.5,14.544199 32.5,32.5c0,17.955803 -14.544197,32.5 -32.5,32.5c-17.955803,0 -32.5,-14.544197 -32.5,-32.5c0,-17.955801 14.544197,-32.5 32.5,-32.5z"/></svg>
+				<svg class="checkmark" width="70" height="70"><path d="m31.5,46.5l15.3,-23.2"/><path d="m31.5,46.5l-8.5,-7.1"/></svg>
+				<svg class="cross" width="70" height="70"><path d="m35,35l-9.3,-9.3"/><path d="m35,35l9.3,9.3"/><path d="m35,35l-9.3,9.3"/><path d="m35,35l9.3,-9.3"/></svg>
+			</div><!-- /progress-button -->
+			<script type="text/javascript" src="js/classie.js"></script>
+			<script type="text/javascript" src="js/uiProgressButton.js"></script>
+			<script type="text/javascript">
+			[].slice.call( document.querySelectorAll( '.progress-button' ) ).forEach( function( bttn, pos ) {
+				new UIProgressButton( bttn, {
+					callback : function( instance ) {
+						var progress = 0,
+							interval = setInterval( function() {
+								progress = Math.min( progress + Math.random() * 0.1, 1 );
+								instance.setProgress( progress );
+
+								if( progress === 1 ) {
+									instance.stop( pos === 1 || pos === 3 ? -1 : 1 );
+									clearInterval( interval );
+									setTimeout("fun1()",1500)
+								}
+							}, 150 );
+					}
+				} );
+			} );
+
+
+
+
+
+
+			function fun1()
+			{
+				var name = document.getElementById("name").value;
+				var age = document.getElementById("age").value;
+				var id = document.getElementById("id").value;
+				var status = document.getElementById("email").value;
+				var keshi = document.getElementById("lastName0").value;
+				var check_in_time = document.getElementById("phoneNumber").value;
+				var main_doctor = document.getElementById("lastName").value;
+				var diagnose_time = document.getElementById("subject").value;
+				var last_diagnose = document.getElementById("lastName4").value;
+				var total_cost = document.getElementById("phone").value;
+				var ill_last = document.getElementById("last").value;
+				var address = document.getElementById("addr").value;
+				var now_illness = document.getElementById("nowill").value;
+				var treatment = document.getElementById("message").value;
+			    var radio = document.getElementsByName("sex");
+			    for(i=0;i<radio.length;i++) {
+			        if(radio[i].checked) {
+			            var sex = radio[i].value;
+			            break;
+					}
+				}
+
+				if(id==null||id==""
+				||status==null||status==""
+				||keshi==null||keshi==""
+				||check_in_time==null||check_in_time==""
+				||main_doctor==null||main_doctor==""
+				||diagnose_time==null||diagnose_time==""
+				||last_diagnose==null||last_diagnose==""
+				||total_cost==null||total_cost==""
+				||ill_last==null||ill_last==""
+				||address==null||address==""
+				||now_illness==null||now_illness==""
+				||treatment==null||treatment==""
+				||name==null||name==""
+				||age==null||age=="")
+				{
+				alert("上传失败！\n不允许有空项！");
+				return ;
+				}
+
+			    $.ajax({
+                    type: "post",
+                    url: "../handleupload",
+                    data: {
+                        "name": name,
+                        "sex": sex,
+                        "age": age,
+                        "id": id,
+                        "status": status,
+                        "keshi": keshi,
+                        "check_in_time": check_in_time,
+                        "main_doctor": main_doctor,
+                        "diagnose_time": diagnose_time,
+                        "last_diagnose": last_diagnose,
+                        "total_cost": total_cost,
+                        "ill_last": ill_last,
+						"address": address,
+						"now_illness": now_illness,
+						"treatment": treatment
+                    },
+                    success: function() {
+			    		alert("上传成功");
+                		location.replace(document.referrer);
+					},
+					error: function(data) {
+                        alert("上传失败!\n"+"请检查网络连接");
+					},
+				});
+			}
+			</script>
+		</div>
+		<div class="sidebar">
+			<h3>联系我们</h3>
+			<ul>
+				<li>
+					<span class="address">公司</span>
+					<ul>
+						<li>
+							保护伞云医疗公司
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span class="phone">电话</span>
+					<ul>
+						<li>
+							***********
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span class="email">电子邮件</span>
+					<ul>
+						<li>
+							<a href="#">1667037815@qq.com</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<h3><h3>
+			<ul class="english">
+				<li>
+					<span class="address1">Company</span>
+					<ul id="add">
+						<li>
+							UCM Co.Ltd
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span class="phone1">Tel</span>
+					<ul id="add1">
+						<li>
+							***********
+						</li>
+					</ul>
+				</li>
+				<li>
+					<span class="email1">E-mail</span>
+					<ul id="add2">
+						<li>
+							<a href="#">1667037815@qq.com</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
